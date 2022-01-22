@@ -84,6 +84,8 @@ if __name__ == '__main__':
         psnr = torch.cat(psnr).mean().item()
 
         print(f'Average PSNR: {psnr:.1f}.')
+        with open(f'{out_dir}/psnr.txt', 'a') as f:
+            f.write(f'Average PSNR: {psnr:.1f}.')
 
     if args.image_evolution:
         print('Plot image evolution...')

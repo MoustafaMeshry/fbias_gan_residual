@@ -11,7 +11,7 @@ training:
   nepochs: 10000
   print_every: 100
   eval_every: 100
-  save_every: 1000
+  save_every: 5000
   lr_g: 0.01
   lr_d: 0.001
   reg_param: 10.

@@ -1,0 +1,10 @@
+model:
+  class_name: models.SG2WaveletDiscriminator
+  divide_channels_by: 8
+  architecture: skip
+  downscale_bilinear: false
+  normalize_dwt: false
+#   downsampling_mode: avg
+#   padding_mode: zeros
+data:
+  highpass: true

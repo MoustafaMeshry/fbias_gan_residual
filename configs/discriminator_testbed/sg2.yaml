@@ -1,3 +1,7 @@
 model:
   class_name: models.SG2Discriminator
   divide_channels_by: 8
+  architecture: resnet
+  # architecture: skip
+data:
+  highpass: false

@@ -1,8 +1,9 @@
 model:
-  class_name: models.SG2WaveletDiscriminator
+  class_name: models.SG2WaveletGenerator
+  z_dim: 64
   divide_channels_by: 8
   architecture: skip
-  downscale_bilinear: false
+  upscale_bilinear: true
   normalize_dwt: true
 #   downsampling_mode: avg
 #   padding_mode: zeros

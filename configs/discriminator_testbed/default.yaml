@@ -16,6 +16,9 @@ training:
   lr_d: 0.001
   reg_param: 10.
   model_average_beta: 0.999
+  lr_decay_epochs: 0
+  lr_decay_every_n_steps: 100
+  lr_decay_rate: 1.0  # set to < 1.0 to apply lr decay across the last lr_decay_epochs.
   criterion:
     class_name: torch.nn.BCEWithLogitsLoss
     weight:

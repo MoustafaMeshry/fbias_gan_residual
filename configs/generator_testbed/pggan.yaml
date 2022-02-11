@@ -4,3 +4,5 @@ model:
   divide_channels_by: 8
   upsampling_mode: bilinear
   padding_mode: reflect
+data:
+  highpass: false

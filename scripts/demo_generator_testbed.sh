@@ -1,2 +1,4 @@
-python generator_testbed.py baboon64/pggan configs/generator_testbed/pggan.yaml
-python eval_generator.py baboon64/pggan --psnr --image-evolution --spectrum-evolution --spectrum-error-evolution
+exp_name="baboon64/pggan"
+# exp_name="baboon64_highpass/pggan"
+python generator_testbed.py $exp_name configs/generator_testbed/pggan.yaml
+python eval_generator.py $exp_name --psnr --image-evolution --spectrum-evolution --spectrum-error-evolution

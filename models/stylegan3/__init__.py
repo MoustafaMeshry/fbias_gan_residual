@@ -8,8 +8,10 @@ module_path = Path(__file__).parent / 'stylegan3'
 sys.path.insert(0, str(module_path.resolve()))
 os.chdir(module_path)
 
-from training.networks_stylegan2 import Generator as SG2Generator, Discriminator as SG2Discriminator, WaveletDiscriminator as SG2WaveletDiscriminator
+from training.networks_stylegan2 import Generator as SG2Generator, Discriminator as SG2Discriminator
 from training.networks_stylegan3 import Generator as SG3Generator
+from training.networks_stylegan2_wavelet import WaveletDiscriminator as SG2WaveletDiscriminator
+from training.networks_stylegan2_wavelet import WaveletGenerator as SG2WaveletGenerator
 
 os.chdir(current_path)
 sys.path.pop(0)

@@ -2,6 +2,7 @@ data:
   root: data/baboon
   resolution: 64
   subset:
+  gan_setup: False
 model:
   spectrum_disc: False
 training:

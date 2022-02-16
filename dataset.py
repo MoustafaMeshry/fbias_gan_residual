@@ -74,7 +74,10 @@ def get_dataset(cfg):
     if cfg.data.get('highpass', False):
         tf.transforms.append(HighPass())
     z_dim = cfg.model.get('z_dim', 1)
-    dset = ImageLatentDataset(cfg.data.root, z_dim, transform=tf)
+    if cfg.data.gan_setup:
+        dset = ClassConditionalImageLatentDataset(cfg.data.root, z_dim, transform=tf)
+    else:
+        dset = ImageLatentDataset(cfg.data.root, z_dim, transform=tf)
     H, W = dset[0][0].shape[1:]
     if H != W:
         raise RuntimeError(f'Images need to be square but have H={H} and W={W}.')
@@ -86,7 +89,7 @@ def get_dataset(cfg):
     dset.resolution = resolution
     dset.highpass = cfg.data.get('highpass', False)
 
-    if z_dim == 1:      # replace z by index, used for discriminator testbed
+    if z_dim == 1 and not cfg.data.gan_setup:      # replace z by index, used for discriminator testbed
         dset.z = torch.arange(len(dset))
 
     if cfg.data.subset is not None:
@@ -130,3 +133,15 @@ class ImageLatentDataset(ImageFolder):
     def __getitem__(self, idx):
         img = super(ImageLatentDataset, self).__getitem__(idx)
         return img, self.z[idx]
+
+
+class ClassConditionalImageLatentDataset(ImageFolder):
+    """Wrapper class which pairs each image with a fixed latent code."""
+    def __init__(self, root, z_dim, transform=None):
+        super(ClassConditionalImageLatentDataset, self).__init__(root, transform=transform)
+        self.z = torch.randn(len(self), 64)
+        self.class_label = torch.arange(len(self))
+
+    def __getitem__(self, idx):
+        img = super(ClassConditionalImageLatentDataset, self).__getitem__(idx)
+        return img, self.z[idx], self.class_label[idx]

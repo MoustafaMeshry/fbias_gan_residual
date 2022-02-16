@@ -1,0 +1,19 @@
+model:
+  class_name: models.SG2WaveletDiscriminator
+  divide_channels_by: 8
+  architecture: skip
+  downscale_bilinear: false
+  normalize_dwt: true
+#   downsampling_mode: avg
+#   padding_mode: zeros
+# training:
+  # lr_decay_epochs: 2000
+  # lr_decay_every_n_steps: 100
+  # lr_decay_rate: 0.75
+data:
+  highpass: false
+  gan_setup: True
+training:
+  lr_g: 0.0005
+  lr_d: 0.001
+  nepochs: 50000
